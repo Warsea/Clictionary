@@ -1,5 +1,6 @@
 import tkinter as tk
 from definitions import Definitions
+from widgets.definition_widgets import English_widget
 
 class Clictionary(Definitions):
     def __init__(self, root, title, geometry, welcome_message):
@@ -11,6 +12,8 @@ class Clictionary(Definitions):
         self.last_clipboard = 'Copy a word!'
         self.label = tk.Label(self.root, textvariable=self.text)
         self.label.pack()
+     
+
 
 
       
@@ -35,7 +38,7 @@ class Clictionary(Definitions):
                 p_o_speech = meaning.get('partOfSpeech')
                 definition = meaning.get('definitions')[0].get('definition')
                 example = meaning.get('definitions')[0].get('example')
-                self.english_widget(self.root,word,  p_o_speech, definition, example)
+                English_widget(self.root,word,  p_o_speech, definition, example)
             
         self.label.after(1000, self.clipboard_watcher)
 
