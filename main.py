@@ -12,6 +12,7 @@ class Clictionary(Definitions):
         self.last_clipboard = 'Copy a word!'
         self.label = tk.Label(self.root, textvariable=self.text)
         self.label.pack()
+        self.meaning = English_widget(self.root)
      
 
 
@@ -22,23 +23,23 @@ class Clictionary(Definitions):
     
 
     def clipboard_watcher(self):
-        # strip the word for blankspaces
-        # resolve non-existant/empty clipboard
-        word = self.root.clipboard_get()
-        if word != self.last_clipboard:
+        try:
+            word = (self.root.clipboard_get()).strip()
+        except tk.TclError:
+            word = None
+
+        
+        if word != self.last_clipboard and word!=None:
             self.last_clipboard = word
             lang = self.check_language(word)
             if lang == "bn":
                 definition_list = self.bangla_definition(word)
                 tk.Label(self.root, text=str(definition_list)).pack()
             elif lang == 'en':
-                definition_json = self.english_definition(word)
-                
-                meaning = definition_json[0].get('meanings')[0]
-                p_o_speech = meaning.get('partOfSpeech')
-                definition = meaning.get('definitions')[0].get('definition')
-                example = meaning.get('definitions')[0].get('example')
-                English_widget(self.root,word,  p_o_speech, definition, example)
+                definition_json, error = self.english_definition(word)
+                self.meaning.destroy()
+                self. meaning = English_widget(self.root, word, definition_json, error)
+        
             
         self.label.after(1000, self.clipboard_watcher)
 

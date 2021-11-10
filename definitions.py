@@ -20,11 +20,15 @@ class Definitions:
             r = requests.get(f'https://api.dictionaryapi.dev/api/v2/entries/en/{call}')
             j = r.json()
             # print(j[0].get('meanings')[0].get('definitions')[0])
-            return j
+            if r.status_code == 200:
+                return j, False
+            else:
+                return f'''Sorry! Couldn't find the meaning of "{word}"''', True
+            
         except requests.exceptions.ConnectionError:
-            return "Can't connect to the internet!!"
+            return "Can't connect to the internet!!", True
         except Exception:
-            return f'''Sorry! Couldn't find the meaning of "{word}"'''
+            return f'''Sorry! Couldn't find the meaning of "{word}"''', True
 
     def check_language(self, word):
         (lang, _) = langid.classify(word)
