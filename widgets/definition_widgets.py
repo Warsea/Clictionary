@@ -39,3 +39,23 @@ class English_widget:
         return data
 
 
+class Bangla_widget:
+    def __init__(self, master, word, definition_list):
+        self.frame = tk.LabelFrame(master, text=word, padx=5, pady=5)
+        self.frame.pack(padx=10, pady=10)
+        
+        meaning = ', '
+        if len(definition_list)!=0:
+            eng_list = []
+            for i in definition_list:
+                eng_list.append(i[1])
+            meaning = meaning.join(eng_list)
+        else:
+            meaning = 'No english meaning found!'
+        self.eng = tk.Label(self.frame, text=meaning, wraplength = 250, justify = "left")
+        self.eng.grid(row=0, column=0)
+    
+    def destroy(self):
+        self.frame.destroy()
+
+
