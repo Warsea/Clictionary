@@ -2,7 +2,7 @@ import tkinter as tk
 
 class English_widget:
     def __init__(self, master, word=None, definition_json="Let's go!!", error=True):
-        self.frame = tk.LabelFrame(master, text=word, padx=5, pady=5)
+        self.frame = tk.LabelFrame(master, text=word, font='bold', foreground='blue4', padx=5, pady=5)
         self.frame.pack(padx=10, pady=10)
         if error==False:
             data = self.data_extractor(definition_json)
@@ -41,7 +41,7 @@ class English_widget:
 
 class Bangla_widget:
     def __init__(self, master, word, definition_list):
-        self.frame = tk.LabelFrame(master, text=word, padx=5, pady=5)
+        self.frame = tk.LabelFrame(master, text=word,font='bold', foreground='blue', padx=5, pady=5)
         self.frame.pack(padx=10, pady=10)
         
         meaning = ', '

@@ -47,5 +47,5 @@ class Clictionary(Definitions):
 
 if __name__ == "__main__":
     root= tk.Tk()
-    app = Clictionary(root, "Clictionary", '350x400', "Welcome to clicktionary. Copy a word to get its meaning.")
+    app = Clictionary(root, "Clictionary", '350x350', "Welcome to clicktionary. Copy a word to get its meaning.")
     root.mainloop()
