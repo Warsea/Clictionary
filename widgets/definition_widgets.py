@@ -34,9 +34,9 @@ class English_widget:
         data['definition'] = meaning.get('definitions')[0].get('definition')
         data['example'] = meaning.get('definitions')[0].get('example')
         synonyms = meaning.get('definitions')[0].get('synonyms')
-        data['synonyms'] = str(synonyms[:3])
+        data['synonyms'] = str(synonyms[:5])
         antonyms = meaning.get('definitions')[0].get('antonyms')
-        data['antonyms'] = str(antonyms[:3])
+        data['antonyms'] = str(antonyms[:5])
         return data
 
 
@@ -48,7 +48,7 @@ class Bangla_widget:
         meaning = ', '
         if len(definition_list)!=0:
             eng_list = []
-            for i in definition_list:
+            for i in definition_list[:30]:
                 eng_list.append(i[1])
             meaning = meaning.join(eng_list)
         else:
