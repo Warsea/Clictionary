@@ -30,7 +30,7 @@ class Clictionary(Definitions):
                 definition_list = self.bangla_definition(word)
                 self.meaning.destroy()
                 self.meaning = Bangla_widget(self.root, word, definition_list)
-            elif lang == 'en':
+            else:
                 definition_json, error = self.english_definition(word)
                 self.meaning.destroy()
                 self. meaning = English_widget(self.root, word, definition_json, error)
@@ -47,5 +47,11 @@ class Clictionary(Definitions):
 
 if __name__ == "__main__":
     root= tk.Tk()
-    app = Clictionary(root, "Clictionary", '350x350', "Welcome to clicktionary. Copy a word to get its meaning.")
+    app_width = 350
+    app_height = 350
+    screen_width = root.winfo_screenwidth()
+    screen_height = root.winfo_screenheight()
+    x = screen_width - app_width
+    y = screen_height//20
+    app = Clictionary(root, "Clictionary", f'{app_width}x{app_height}+{int(x)}+{y}', "Welcome to clicktionary. Copy a word to get its meaning.")
     root.mainloop()

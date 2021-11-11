@@ -10,15 +10,16 @@ class English_widget:
             self.part_of_speech_widget.grid(row=0, column=0)
             self.definition_widget = tk.Label(self.frame, text=(data.get('definition') + '\n'), wraplength = 250, justify = "left")
             self.definition_widget.grid(row=1, column=1)
-            example = f"example: {data.get('example')}"
-            self.example_widget = tk.Label(self.frame, text=example, wraplength = 250, justify = "left")
-            self.example_widget.grid(row=2, column=1)
+            if data.get('example') != None:
+                example = f"example: {data.get('example')}"
+                self.example_widget = tk.Label(self.frame, text=example, wraplength = 250, justify = "left")
+                self.example_widget.grid(row=2, column=1, sticky='W')
             synonyms = f"""synonyms: {data.get('synonyms')}"""
-            self.example_widget = tk.Label(self.frame, text=synonyms, wraplength = 250, justify = "left")
-            self.example_widget.grid(row=3, column=1)
+            self.synonym_widget = tk.Label(self.frame, text=synonyms, wraplength = 250, justify = "left")
+            self.synonym_widget.grid(row=3, column=1, sticky='W')
             antonyms = f"""antonyms: {data.get('antonyms')}"""
-            self.example_widget = tk.Label(self.frame, text=antonyms, wraplength = 250, justify = "left")
-            self.example_widget.grid(row=4, column=1)
+            self.antonym_widget = tk.Label(self.frame, text=antonyms, wraplength = 250, justify = "left")
+            self.antonym_widget.grid(row=4, column=1, sticky='W')
         else:
             self.error = tk.Label(self.frame, text=definition_json, wraplength = 250, justify = "left")
             self.error.pack()

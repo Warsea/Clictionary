@@ -1,2 +1,5 @@
 extra/
 todo.txt
+build/
+dist/
+main.spec
