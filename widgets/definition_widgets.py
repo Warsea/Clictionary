@@ -9,7 +9,7 @@ class English_widget:
             self.part_of_speech_widget = tk.Label(self.frame, text=data.get('part_of_speech'))
             self.part_of_speech_widget.grid(row=0, column=0)
             self.definition_widget = tk.Label(self.frame, text=(data.get('definition') + '\n'), wraplength = 250, justify = "left")
-            self.definition_widget.grid(row=1, column=1)
+            self.definition_widget.grid(row=1, column=1, sticky='W')
             if data.get('example') != None:
                 example = f"example: {data.get('example')}"
                 self.example_widget = tk.Label(self.frame, text=example, wraplength = 250, justify = "left")
