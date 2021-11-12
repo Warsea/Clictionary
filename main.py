@@ -26,7 +26,7 @@ class Clictionary(Definitions):
         if word != self.last_clipboard and word!=None:
             self.last_clipboard = word
             lang = self.check_language(word)
-            if lang == "bn":
+            if lang == "bn" or lang == 'as':
                 definition_list = self.bangla_definition(word)
                 self.meaning.destroy()
                 self.meaning = Bangla_widget(self.root, word, definition_list)

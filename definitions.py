@@ -1,12 +1,24 @@
 import csv
 import requests
 import langid
+import sys
+import os
 
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 
 class Definitions:
     def bangla_definition(self, word):
-        with open('BanglaDictionary.csv', 'r',encoding="utf8") as csv_file:
+        file_path = resource_path('./BanglaDictionary.csv')
+        with open(file_path, 'r',encoding="utf8") as csv_file:
             csv_reader = csv.reader(csv_file, delimiter='|')
             definitions = []
             for row in csv_reader:
@@ -19,7 +31,6 @@ class Definitions:
         try:
             r = requests.get(f'https://api.dictionaryapi.dev/api/v2/entries/en/{call}')
             j = r.json()
-            # print(j[0].get('meanings')[0].get('definitions')[0])
             if r.status_code == 200:
                 return j, False
             else:

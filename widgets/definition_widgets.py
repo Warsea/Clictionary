@@ -42,7 +42,7 @@ class English_widget:
 
 class Bangla_widget:
     def __init__(self, master, word, definition_list):
-        self.frame = tk.LabelFrame(master, text=word,font='bold', foreground='blue', padx=5, pady=5)
+        self.frame = tk.LabelFrame(master, text=word,font='bold', foreground='dark green', padx=5, pady=5)
         self.frame.pack(padx=10, pady=10)
         
         meaning = ', '
